@@ -1,198 +1,880 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Karn Singh - UI/UX Designer</title>
-  <style>
-    /* Basic Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      cursor: none;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karn Singh - UI/UX Designer</title>
+    <style>
+        /* Reset and Basic Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', 'Arial', sans-serif; /* Soothing, readable font */
+            background-color: #f8f9fa; /* Light, airy background */
+            color: #495057; /* Soft dark gray text */
+            line-height: 1.7;
+            scroll-behavior: smooth;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
 
-    html, body {
-      scroll-behavior: smooth;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #ffffff;
-      color: #1a1a1a;
-    }
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px;
+            overflow: hidden;
+        }
 
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      background: url('https://www.transparenttextures.com/patterns/cubes.png');
-      z-index: -1;
-    }
+        h1, h2, h3, h4 {
+            color: #343a40; /* Darker gray for headings */
+            text-shadow: none; /* Remove cyberpunk glow */
+            font-weight: 400; /* Lighter font weight for Lato */
+        }
+        
+        h1 { font-size: 2.8rem; font-weight: 300; margin-bottom: 1rem;}
+        h2 { font-size: 2.2rem; font-weight: 300; margin-bottom: 0.8rem;}
+        h3 { font-size: 1.6rem; font-weight: 400;}
+        h4 { font-size: 1.2rem; font-weight: 400;}
 
-    .cursor {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      border: 2px solid #000;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.1s ease;
-    }
+        p {
+            margin-bottom: 1.2rem;
+            color: #5a6268; /* Slightly lighter gray for paragraphs */
+        }
 
-    header {
-      height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://source.unsplash.com/1600x900/?design,workspace') no-repeat center center/cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
-    }
+        a {
+            color: #5c9ead; /* Calm blue accent */
+            text-decoration: none;
+            transition: color 0.3s ease; /* Remove text-shadow transition */
+        }
 
-    header h1 {
-      font-size: 3rem;
-      animation: fadeIn 2s ease-out;
-    }
+        a:hover {
+            color: #3b6a77; /* Darker shade of calm blue */
+            text-decoration: none;
+            text-shadow: none;
+        }
 
-    header p {
-      font-size: 1.2rem;
-      margin-top: 0.5em;
-      animation: fadeIn 3s ease-out;
-    }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
 
-    section {
-      padding: 4rem 2rem;
-    }
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 18px; 
+            height: 18px;
+            border: 2px solid #5c9ead; /* Calm blue border */
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+            z-index: 9999;
+            box-shadow: none; /* Remove cyberpunk shadow */
+            opacity: 0.7;
+        }
 
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
+        .custom-cursor.hovered {
+            width: 24px;
+            height: 24px;
+            background-color: rgba(92, 158, 173, 0.2); /* Light calm blue fill */
+            border-color: #5c9ead;
+            box-shadow: none;
+            opacity: 1;
+        }
+        
+        body {
+            cursor: none; 
+        }
 
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      animation: slideUp 2s ease-out;
-    }
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95); /* Light, slightly transparent */
+            backdrop-filter: blur(3px); /* Subtle blur */
+            border-bottom: 1px solid #e0e0e0; /* Light gray border */
+            color: #495057; /* Soft dark gray text */
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
 
-    .info-grid, .skills, .experience, .projects {
-      margin-bottom: 2rem;
-    }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .hover-card:hover {
-      background-color: #f0f0f0;
-      transform: scale(1.03);
-      transition: all 0.3s ease;
-    }
+        nav h1 {
+            margin: 0;
+            font-size: 1.6rem; 
+            color: #343a40; 
+            font-weight: 700; /* Bolder for brand */
+        }
+        
+        nav h1 a {
+            color: #343a40;
+            text-shadow: none;
+        }
+        nav h1 a:hover {
+            color: #5c9ead; /* Calm blue on hover */
+            text-shadow: none;
+        }
 
-    footer {
-      background: #1a1a1a;
-      color: white;
-      text-align: center;
-      padding: 2rem;
-    }
+        nav ul {
+            display: flex;
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        nav ul li {
+            margin-left: 25px; /* Slightly more spacing */
+        }
 
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(50px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+        nav ul li a {
+            color: #495057; /* Soft dark gray */
+            font-weight: 400;
+            text-transform: none; /* Regular case */
+            letter-spacing: 0;
+        }
+
+        nav ul li a:hover {
+            color: #5c9ead; /* Calm blue on hover */
+            text-shadow: none;
+        }
+        
+        .scrolled nav {
+            background-color: rgba(248, 249, 250, 0.98); /* Slightly more opaque */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Softer shadow */
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh; /* Slightly less than full viewport for a calmer feel */
+            /* Replace with a soothing, high-quality background image, e.g., nature, abstract soft texture */
+            background-image: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80'); /* Example: serene landscape, replace! */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Retain simple parallax */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff; /* Text color will depend on overlay or image chosen */
+            padding-top: 60px; 
+            position: relative; 
+        }
+        
+        /* Optional: Soft overlay for hero text readability */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.2); /* Soft dark overlay, adjust as needed */
+            z-index: 1;
+            pointer-events: none;
+            /* Remove scanlines animation */
+        }
+
+        .hero .container {
+            position: relative; 
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem; /* Adjusted size */
+            margin-bottom: 0.8rem;
+            color: #fff; /* White text on overlay/image */
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3); /* Soft shadow for readability */
+            font-weight: 300; /* Lighter for hero title */
+            /* Remove flicker animation */
+        }
+
+        .hero p {
+            font-size: 1.4rem; 
+            margin-bottom: 2rem;
+            color: #f0f0f0; /* Lighter text on overlay/image */
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .hero .cta-button {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #5c9ead; /* Calm blue */
+            color: #fff; 
+            border: 1px solid #5c9ead;
+            border-radius: 25px; /* Pill shape */
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            text-transform: none; /* Regular case */
+            letter-spacing: 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero .cta-button:hover {
+            background-color: #4a8391; /* Darker calm blue */
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+
+        /* Sections General Styling */
+        section {
+            padding: 80px 0; 
+            opacity: 0;
+            transform: translateY(30px); /* Softer entry */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            border-bottom: 1px solid #e9ecef; /* Light separator */
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section:nth-child(odd) {
+            background-color: #f8f9fa; /* Consistent light background */
+        }
+        
+        section:nth-child(even) {
+            background-color: #fff; /* White for subtle contrast */
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem; 
+            margin-bottom: 40px;
+            position: relative;
+            color: #343a40;
+            text-transform: none; 
+            letter-spacing: 0;
+            font-weight: 300;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px; 
+            height: 3px;
+            background-color: #5c9ead; /* Calm blue accent */
+            margin: 12px auto 0;
+            border-radius: 2px;
+            box-shadow: none; /* Remove shadow */
+        }
+
+        /* About Section */
+        #about .content {
+            display: flex;
+            align-items: center;
+            gap: 30px; 
+        }
+
+        #about .profile-pic {
+            width: 200px; 
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #dee2e6; /* Light gray border */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Softer shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        #about .profile-pic:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08); 
+        }
+        
+        #about p {
+           text-align: justify;
+           color: #5a6268;
+        }
+        #about h3 {
+            color: #343a40; 
+            text-shadow: none;
+            margin-bottom: 0.5rem;
+        }
+
+
+        /* Experience Section */
+        .experience-item {
+            background: #fff; 
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid #5c9ead; /* Calm blue accent */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow */
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-left-color 0.2s ease;
+            border-radius: 4px;
+        }
+        
+        .experience-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+            border-left-color: #77ab59; /* Gentle green on hover */
+        }
+
+        .experience-item h3 {
+            margin-top: 0;
+            color: #343a40; 
+        }
+        .experience-item .company {
+            color: #5c9ead; /* Calm blue */
+            font-weight: 600; /* Semi-bold for company */
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        .experience-item .date {
+            font-style: normal;
+            color: #868e96; /* Lighter gray for date */
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+        .experience-item ul li {
+            color: #5a6268;
+            margin-bottom: 6px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .experience-item ul li::before {
+            content: '•'; /* Simple bullet */
+            color: #5c9ead; /* Calm blue */
+            position: absolute;
+            left: 0;
+            font-weight: normal;
+            animation: none; /* Remove blink */
+            font-size: 1.2em;
+            top: -1px;
+        }
+
+        /* Education Section */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 25px;
+        }
+        .education-item {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #e0e0e0; /* Light gray border */
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        .education-item:hover {
+             transform: translateY(-3px);
+             box-shadow: 0 4px 8px rgba(0,0,0,0.06); 
+             border-color: #b0bec5; /* Slightly darker gray border on hover */
+        }
+         .education-item h3 {
+            color: #343a40; 
+            margin-top:0;
+            font-size: 1.25rem;
+         }
+         .education-item p {
+             color: #5a6268;
+             font-size: 0.95rem;
+         }
+
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: #f8f9fa; /* Match section bg or #fff */
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid #e9ecef; 
+            box-shadow: none; /* Remove cyberpunk shadow */
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        .skill-category:hover {
+            box-shadow: 0 3px 7px rgba(0,0,0,0.05);
+            border-color: #ced4da;
+        }
+
+        .skill-category h3 {
+            color: #5c9ead; /* Calm blue */
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0; /* Light underline */
+            padding-bottom: 10px;
+            text-shadow: none;
+            font-size: 1.3rem;
+        }
+
+        .skill-category ul li {
+            margin-bottom: 8px; 
+            padding-left: 22px;
+            position: relative;
+            color: #5a6268;
+            font-size: 0.95rem;
+        }
+        
+        .skill-category ul li::before {
+            content: '▹'; /* Soft arrow or simple bullet */
+            color: #77ab59; /* Gentle green accent */
+            position: absolute;
+            left: 0;
+            font-weight: normal;
+            font-size: 1.1em;
+            top: 0px;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+        .skill-category ul li:hover::before {
+            transform: translateX(2px);
+            color: #5c9ead; /* Calm blue on hover */
+        }
+        
+        .skill-category ul li span {
+            font-style: normal;
+            color: #868e96; /* Lighter gray for description */
+            font-size: 0.85em;
+        }
+        .skills-extra {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+        .skills-extra h3 {
+            color: #5c9ead;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        .skills-extra p, .skills-extra ul li {
+            color: #5a6268;
+            font-size: 0.95rem;
+        }
+         .skills-extra ul {
+            padding-left: 20px;
+            list-style: disc; /* Standard disc */
+         }
+         .skills-extra ul li {
+            margin-bottom: 5px;
+            padding-left: 5px;
+         }
+
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 25px;
+        }
+        .project-card {
+            background: #fff; 
+            border-radius: 6px;
+            border: 1px solid #e0e0e0; 
+            box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative; 
+        }
+        .project-card::before { /* Remove gradient border */
+            content: none;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px) scale(1.01); 
+            box-shadow: 0 5px 12px rgba(0,0,0,0.08); 
+            border-color: #5c9ead; /* Calm blue border on hover */
+        }
+
+        .project-card img { 
+            width: 100%;
+            height: 200px; 
+            object-fit: cover;
+            background-color: #e9ecef; /* Light placeholder */
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+        .project-card:hover img {
+            opacity: 0.9; /* Slight fade on image for text pop, optional */
+        }
+        .project-content {
+            padding: 20px;
+        }
+        .project-content h3 {
+            margin-top: 0;
+            color: #343a40; 
+            font-size: 1.3rem;
+        }
+        .project-content p {
+            color: #5a6268;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: #e9ecef; /* Light gray, consistent with separators */
+            color: #495057; 
+            border-top: 1px solid #dee2e6; 
+            padding: 60px 0;
+        }
+        #contact .section-title, #contact h3, #contact p, #contact a {
+            color: #495057; 
+        }
+        #contact .section-title::after {
+            background-color: #5c9ead; 
+            box-shadow: none;
+        }
+        #contact a {
+            color: #5c9ead; 
+        }
+        #contact a:hover {
+            color: #3b6a77; 
+            text-shadow: none;
+        }
+        
+        .contact-info {
+            text-align: center;
+        }
+        .contact-info p {
+            margin-bottom: 12px; 
+            font-size: 1.1rem; 
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #f8f9fa; /* Light background */
+            color: #868e96; /* Muted gray text */
+            border-top: 1px solid #e9ecef;
+            font-size: 0.9rem;
+        }
+        footer p {
+            color: #868e96;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            nav .container {
+                flex-direction: column;
+            }
+            nav h1 {
+                margin-bottom: 10px;
+                text-align: center;
+            }
+            nav ul {
+                margin-top: 10px;
+                justify-content: center;
+                flex-wrap: wrap; 
+            }
+            nav ul li {
+                margin: 5px 10px;
+            }
+            #about .content {
+                flex-direction: column;
+                text-align: center;
+            }
+            #about .profile-pic {
+                margin-bottom: 25px;
+            }
+            .skills-grid, .projects-grid, .education-grid {
+                grid-template-columns: 1fr; 
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .hero {
+                height: auto;
+                padding-top: 80px; /* Adjust for nav */
+                padding-bottom: 40px;
+            }
+        }
+        
+        /* Remove unused cyberpunk animation classes */
+        /* .fade-in, .slide-in-left, .slide-in-right, text-glow classes are not actively used by base structure */
+        /* @keyframes fadeInAnimation, slideInLeftAnimation, slideInRightAnimation, flicker, scanlines, blink, gradientRotate are removed or handled by new theme */
+
+    </style>
+    <!-- Link to Lato font -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
-  <div class="cursor" id="cursor"></div>
-  <header>
-    <div>
-      <h1>Karn Singh</h1>
-      <p>UI/UX Designer</p>
-    </div>
-  </header>
 
-  <section>
-    <div class="container">
-      <h2>Contact</h2>
-      <p>Q Block, Hastinpur, Meerut - 250404<br>
-      +91 7248118051<br>
-      singhkar68@gmail.com</p>
+    <div class="custom-cursor"></div>
 
-      <h2>Professional Summary</h2>
-      <p>Passionate UI/UX Designer with hands-on experience in user research, prototyping, and interface design. Strong background in data analysis and client liaison, bringing unique perspective to user experience optimization.</p>
-
-      <h2>Experience</h2>
-      <div class="experience">
-        <div class="hover-card">
-          <h3>UI/UX Design Intern - VITARKA (Dec 2024 - Feb 2025)</h3>
-          <ul>
-            <li>Collaborated on 2 real-life projects using user-centered design methodology</li>
-            <li>Conducted user research and market analysis</li>
-            <li>Created wireframes and prototypes using Figma</li>
-          </ul>
+    <nav id="navbar">
+        <div class="container">
+            <h1><a href="#">Karn Singh</a></h1>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
-        <div class="hover-card">
-          <h3>Liaison Officer - PNC Infratech Ltd. (Jan 2023 - Dec 2024)</h3>
+    </nav>
+
+    <header class="hero" id="hero">
+        <div class="container">
+            <h1>Karn Singh</h1>
+            <p>UI/UX Designer</p>
+            <a href="#about" class="cta-button">Learn More</a>
         </div>
-        <div class="hover-card">
-          <h3>DEO - Liaison - Dilip Buildcon Ltd. (Feb 2019 - Feb 2023)</h3>
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="content">
+                 <img src="https://via.placeholder.com/200x200.png?text=Karn" alt="Karn Singh" class="profile-pic">
+                <div>
+                    <h3>Professional Summary</h3>
+                    <p>Passionate UI/UX Designer with hands-on experience in user research, prototyping, and interface design. Proven ability to bridge business requirements with user needs through data-driven design decisions. Strong background in data analysis and client liaison, bringing unique perspective to user experience optimization and stakeholder management.</p>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <h2>Education</h2>
-      <ul>
-        <li>BCA - SV Subharti University (2022) - 67%</li>
-        <li>12th - SD Vidya Mandir (2015) - 72%</li>
-        <li>10th - SD Vidya Mandir (2013) - 68%</li>
-      </ul>
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-item">
+                <h3>UI/UX Design Intern</h3>
+                <p class="company">VITARKA.</p>
+                <p class="date">Dec 2024 - Feb 2025</p>
+                <ul>
+                    <li>Collaborated on 2 real-life projects focusing on user-centered design methodology</li>
+                    <li>Conducted comprehensive user research and market analysis to inform design decisions</li>
+                    <li>Created detailed wireframes, prototypes, and user journey maps using Figma</li>
+                    <li>Developed ideation frameworks and facilitated design thinking workshops</li>
+                    <li>Implemented responsive design principles for mobile-first approach</li>
+                    <li>Presented design solutions to stakeholders with clear rationale and user insights</li>
+                </ul>
+            </div>
+            <div class="experience-item">
+                <h3>Liaison Officer</h3>
+                <p class="company">PNC Infratech Ltd.</p>
+                <p class="date">Jan 2023 - Dec 2024</p>
+                <!-- Add responsibilities if available, or keep it concise -->
+            </div>
+            <div class="experience-item">
+                <h3>DEO - Liaison</h3>
+                <p class="company">Dilip Buildcon Ltd.</p>
+                <p class="date">Feb 2019 - Feb 2023</p>
+                 <!-- Add responsibilities if available, or keep it concise -->
+            </div>
+        </div>
+    </section>
 
-      <h2>Skills</h2>
-      <div class="skills">
-        <p><strong>Design Tools:</strong> Figma, Miro, Adobe Suite, Sketch</p>
-        <p><strong>UX Research:</strong> Interviews, Surveys, Testing, Mapping, Heuristics</p>
-        <p><strong>Technical:</strong> HTML/CSS, Python, Excel, Tally</p>
-        <p><strong>Design Principles:</strong> HCD, Responsive, Accessibility, Typography</p>
-      </div>
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-grid">
+                <div class="education-item">
+                    <h3>Bachelor of Computer Applications (BCA)</h3>
+                    <p>SV Subharti University</p>
+                    <p>Year: 2022 | Score: 67%</p>
+                </div>
+                <div class="education-item">
+                    <h3>Higher Secondary (12th)</h3>
+                    <p>SD Vidya Mandir</p>
+                    <p>Year: 2015 | Score: 72%</p>
+                </div>
+                <div class="education-item">
+                    <h3>Secondary (10th)</h3>
+                    <p>SD Vidya Mandir</p>
+                    <p>Year: 2013 | Score: 68%</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <h2>Languages</h2>
-      <p>Hindi (Native), English (Professional), Kannada (Basic)</p>
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Design Tools</h3>
+                    <ul>
+                        <li>Figma - <span>Advanced proficiency in prototyping, component libraries, and collaboration</span></li>
+                        <li>Miro - <span>User journey mapping, brainstorming, and workshop facilitation</span></li>
+                        <li>Adobe Creative Suite - <span>Photoshop, Illustrator (Learning)</span></li>
+                        <li>Sketch - <span>Interface design (Basic)</span></li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>UX Research & Analysis</h3>
+                    <ul>
+                        <li>User Research Methods <span>(Interviews, Surveys, Usability Testing)</span></li>
+                        <li>Information Architecture, Wireframing & Prototyping</li>
+                        <li>User Journey Mapping, Competitive Analysis</li>
+                        <li>Heuristic Evaluation</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Technical Skills</h3>
+                    <ul>
+                        <li>Python - <span>Data analysis for user behavior insights</span></li>
+                        <li>Microsoft Office - <span>Advanced Excel for data visualization</span></li>
+                        <li>Tally - <span>Financial interface analysis</span></li>
+                        <li>HTML/CSS - <span>Basic understanding for design handoff</span></li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Design Principles</h3>
+                    <ul>
+                        <li>Human-Centered Design, Design Thinking Methodology</li>
+                        <li>Responsive Web Design, Accessibility Standards (WCAG)</li>
+                        <li>Visual Hierarchy & Typography, Color Theory & Psychology</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="skills-extra" style="margin-top:30px;">
+                 <h3>Languages</h3>
+                 <p>Hindi (Native), English (Professional), Kannada (Basic)</p>
+                 <h3>Core Strengths</h3>
+                 <ul>
+                    <li>User Empathy & Research</li>
+                    <li>Analytical Thinking</li>
+                    <li>Cross-functional Collaboration</li>
+                    <li>Problem-Solving</li>
+                    <li>Communication Skills</li>
+                    <li>Attention to Detail</li>
+                 </ul>
+            </div>
+        </div>
+    </section>
 
-      <h2>Core Strengths</h2>
-      <ul>
-        <li>User Empathy & Research</li>
-        <li>Analytical Thinking</li>
-        <li>Cross-functional Collaboration</li>
-        <li>Problem-Solving</li>
-        <li>Communication Skills</li>
-        <li>Attention to Detail</li>
-      </ul>
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects & Achievements</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                     <img src="https://via.placeholder.com/400x200.png?text=Project+1" alt="Project 1">
+                    <div class="project-content">
+                        <h3>Process Optimization</h3>
+                        <p>Improved client communication workflows, resulting in 30% better user satisfaction.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/400x200.png?text=Project+2" alt="Project 2">
+                    <div class="project-content">
+                        <h3>Interface Redesign</h3>
+                        <p>Reduced data entry errors by 25% through user-centered design improvements.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/400x200.png?text=Project+3" alt="Project 3">
+                    <div class="project-content">
+                        <h3>User Research Initiative</h3>
+                        <p>Conducted comprehensive market research and user interviews for 2 live projects.</p>
+                    </div>
+                </div>
+                 <div class="project-card">
+                    <img src="https://via.placeholder.com/400x200.png?text=Achievement" alt="Achievement">
+                    <div class="project-content">
+                        <h3>Stakeholder Management</h3>
+                        <p>Successfully managed client relationships while gathering UX requirements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <h2>Projects & Achievements</h2>
-      <ul>
-        <li>Improved client workflows by 30%</li>
-        <li>Reduced data errors by 25% through redesign</li>
-        <li>Conducted market research for live projects</li>
-        <li>Managed client relationships during UX research</li>
-      </ul>
-    </div>
-  </section>
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-info">
+                <p>Q Block, Hastinpur, Meerut - 250404</p>
+                <p>Phone: <a href="tel:+917248118051">+91 7248118051</a></p>
+                <p>Email: <a href="mailto:singhkar68@gmail.com">singhkar68@gmail.com</a></p>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    &copy; 2025 Karn Singh. All rights reserved.
-  </footer>
+    <footer>
+        <p>&copy; 2024 Karn Singh. All Rights Reserved.</p>
+    </footer>
 
-  <script>
-    // Custom cursor
-    const cursor = document.getElementById('cursor');
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-    });
-  </script>
+    <script>
+        // Custom Cursor Logic
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', e => {
+            // cursor.setAttribute("style", "top: "+(e.pageY - scrollY)+"px; left: "+e.pageX+"px;") // Original
+            // Improved to handle scroll position better for fixed elements
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('mouseover', e => {
+            if (e.target.tagName === 'A' || 
+                e.target.tagName === 'BUTTON' || 
+                e.target.closest('a, button, .experience-item, .education-item, .project-card, nav ul li a, .hero .cta-button')) { 
+                cursor.classList.add('hovered');
+            } else {
+                cursor.classList.remove('hovered');
+            }
+        });
+        
+        // Parallax effect for Hero (simple version already via CSS background-attachment: fixed)
+        
+        window.addEventListener('scroll', function() {
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                document.body.classList.add('scrolled');
+            } else {
+                document.body.classList.remove('scrolled');
+            }
+
+            // Section visibility animation on scroll
+            const sections = document.querySelectorAll('section');
+            const windowHeight = window.innerHeight;
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop < windowHeight - 70) { // Adjusted threshold for smoother appearance
+                    section.classList.add('visible');
+                } else {
+                    // section.classList.remove('visible'); // Keep visible once scrolled
+                }
+            });
+        });
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === "#") { 
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                    return;
+                }
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navbarHeight = document.getElementById('navbar').offsetHeight;
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - navbarHeight - 10; // Extra 10px padding from top
+                
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+    </script>
 </body>
 </html>
