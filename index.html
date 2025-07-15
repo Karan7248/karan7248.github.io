@@ -881,7 +881,48 @@
     <section id="projects">
         <div class="container">
             <h2 class="section-title">Projects & Achievements</h2>
-            <title>https://www.figma.com/design/jVeDns3894HSblsy6sGGw7/Instagram?node-id=0-1&m=dev&t=gMezj74PoiUITHOd-1</title>
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>https://www.figma.com/design/jVeDns3894HSblsy6sGGw7/Instagram?node-id=49-2&m=dev&t=gMezj74PoiUITHOd-1</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background: #f9f9f9;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    input {
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Paste Your Project Link</h2>
+  <input type="text" id="projectLink" placeholder="Paste your project URL here" />
+  <button onclick="openLink()">Open Link</button>
+
+  <script>
+    function openLink() {
+      const link = document.getElementById("projectLink").value;
+      if (link) {
+        // Opens in a new tab
+        window.open(link, "_blank");
+      } else {
+        alert("Please paste a valid link.");
+      }
+    }
+  </script>
+
+</body>
+</html>
+
             <div class="projects-grid">
                 <div class="project-card">
                      <img src="https://via.placeholder.com/400x200.png?text=Project+1" alt="Project 1">
